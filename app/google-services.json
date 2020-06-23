@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "704220673551",
+    "firebase_url": "https://parkapp-android.firebaseio.com",
+    "project_id": "parkapp-android",
+    "storage_bucket": "parkapp-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704220673551:android:80f1b1ec58219f6184557a",
+        "android_client_info": {
+          "package_name": "com.wakusoft.parkapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704220673551-p82f0qot2lc966og5u6fd78f3tku1hha.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wakusoft.parkapp",
+            "certificate_hash": "aff70a177d41cd58f51d7e4db4ecf6448994985f"
+          }
+        },
+        {
+          "client_id": "704220673551-86diqkahmc4raarngd9mc4t9a75k53g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCtIzL-VgL0sCPPTmm-eN1G8nz9zBeNXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704220673551-86diqkahmc4raarngd9mc4t9a75k53g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
