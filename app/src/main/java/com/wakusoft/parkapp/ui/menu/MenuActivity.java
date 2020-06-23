@@ -16,6 +16,7 @@ import com.wakusoft.parkapp.ui.app.ClientesActivity;
 import com.wakusoft.parkapp.ui.app.ConfigActivity;
 import com.wakusoft.parkapp.ui.app.EntradasActivity;
 import com.wakusoft.parkapp.ui.app.PerfilActivity;
+import com.wakusoft.parkapp.ui.app.SalidasActivity;
 import com.wakusoft.parkapp.ui.app.ServiciosActivity;
 import com.wakusoft.parkapp.ui.login.LoginActivity;
 
@@ -111,6 +112,21 @@ public class MenuActivity extends AppCompatActivity {
         }
     };
 
+    private View.OnClickListener goSalidas = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            SharedPreferences prefs = getSharedPreferences("shared_login_data",   Context.MODE_PRIVATE);
+            String id = prefs.getString("ID", "");
+            String correo = prefs.getString("CORREO", "");
+            String nit = prefs.getString("NIT", "");
+            Intent intent = new Intent(v.getContext(), SalidasActivity.class);
+            intent.putExtra("CORREO", correo);
+            intent.putExtra("NIT", nit);
+            intent.putExtra("ID", id);
+            startActivityForResult(intent, 0);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,6 +160,10 @@ public class MenuActivity extends AppCompatActivity {
 
         Button btServicios = (Button) findViewById(R.id.BtServicios);
         btServicios.setOnClickListener(goServicios);
+
+        Button btCenso = (Button) findViewById(R.id.BtCenso);
+        btCenso.setOnClickListener(goSalidas);
+
 
         Button btSalir = (Button) findViewById(R.id.BtSalir);
         btSalir.setOnClickListener(new View.OnClickListener() {

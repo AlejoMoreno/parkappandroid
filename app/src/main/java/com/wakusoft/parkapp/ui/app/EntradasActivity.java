@@ -148,7 +148,7 @@ public class EntradasActivity extends AppCompatActivity implements CuadroServici
         // TODO Auto-generated method stub
         super.onBackPressed();
         try{
-            iniReloj.suspend();
+            //iniReloj.suspend();
             this.finish();
         }
         catch(Exception  exc){
