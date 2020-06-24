@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.wakusoft.parkapp.R;
 import com.wakusoft.parkapp.ui.app.CajaActivity;
 import com.wakusoft.parkapp.ui.app.ClientesActivity;
@@ -127,12 +129,19 @@ public class MenuActivity extends AppCompatActivity {
         }
     };
 
+    private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
         getSupportActionBar().hide();
+
+        //anuncion
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //-------------TOMAR DATOS DE USUARIO SESION -----------------
         SharedPreferences prefs = getSharedPreferences("shared_login_data",   Context.MODE_PRIVATE);

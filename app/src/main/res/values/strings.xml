@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">parkapp</string>
     <string name="button">Button</string>
+    <!--<string name="banner_ad_unit_id">ca-app-pub-39402560x99942544/6300978111</string> prueba -->
+    <string name="banner_ad_unit_id">ca-app-pub-4639820515028360/7261663999</string>
 </resources>

@@ -91,6 +91,13 @@ public class SalidasActivity extends AppCompatActivity implements CuadroEntradas
 
                     salida.save(salida);
 
+                    TxSalidaCliente.setText("");
+                    TxSalidaPlaca.setText("");
+                    TxSalidaValorTotal.setText("");
+                    TxSalidaDesde.setText("");
+                    TxSalidaHasta.setText("");
+                    TxSalidaHoraTotal.setText("");
+
                     final FirebaseFirestore db = FirebaseFirestore.getInstance();
                     db.collection("entradas").whereEqualTo("placa",TxSalidaPlaca.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override

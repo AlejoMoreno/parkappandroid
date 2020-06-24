@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+
         <activity android:name=".ui.app.SalidasActivity"></activity>
         <activity android:name=".ui.app.PerfilActivity" />
         <activity android:name=".ui.app.ServiciosActivity" />
@@ -32,6 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4639820515028360~1880865872"/>
+
     </application>
 
 </manifest>
