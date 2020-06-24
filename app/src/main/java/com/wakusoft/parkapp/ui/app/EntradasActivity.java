@@ -166,8 +166,13 @@ public class EntradasActivity extends AppCompatActivity implements CuadroServici
                     } else {
                         updateTime();
                     }
-                    curTime =hor+ hora + min + minuto + sec + segundo;
-                    tHora.setText( formattedDate + " " + curTime);
+                    Date calendar = Calendar.getInstance().getTime();
+
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss");
+                    String formattedDate = df.format(calendar);
+
+                    curTime = formattedDate;
+                    tHora.setText(curTime);
 
                 }catch (Exception e) {}
             }
