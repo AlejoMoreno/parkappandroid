@@ -134,6 +134,15 @@
                                     android:text="Generar Reporte"
                                     android:textColor="#FFFFFF" />
 
+                                <TableLayout
+                                    android:id="@+id/LinearTableCaja"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="14dp">
+
+                                </TableLayout>
+
                                 <TextView
                                     android:id="@+id/ResultadoCreacion"
                                     android:layout_width="match_parent"

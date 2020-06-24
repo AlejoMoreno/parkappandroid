@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.wakusoft.parkapp.R;
 import com.wakusoft.parkapp.ui.app.CajaActivity;
 import com.wakusoft.parkapp.ui.app.ClientesActivity;
@@ -139,6 +140,8 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //anuncion
+        MobileAds.initialize(this,
+                "ca-app-pub-4639820515028360~1880865872");
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);

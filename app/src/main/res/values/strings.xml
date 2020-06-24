@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">parkapp</string>
     <string name="button">Button</string>
-    <!--<string name="banner_ad_unit_id">ca-app-pub-39402560x99942544/6300978111</string> prueba -->
-    <string name="banner_ad_unit_id">ca-app-pub-4639820515028360/7261663999</string>
+    <string name="banner_ad_unit_id">ca-app-pub-39402560x99942544/6300978111</string> <!-- prueba  -->
+    <!--<string name="banner_ad_unit_id">ca-app-pub-4639820515028360/7261663999</string>-->
+    <string name="banner_ad_unit_id_caja">ca-app-pub-3940256099942544/1033173712</string> <!-- prueba  -->
+    <!--<string name="banner_ad_unit_id_caja">ca-app-pub-4639820515028360/1403133974</string>-->
+    <string name="banner_ad_unit_id_servicio">ca-app-pub-3940256099942544/1033173712</string> <!-- prueba  -->
+    <!--<string name="banner_ad_unit_id_servicio">ca-app-pub-4639820515028360/3715911474</string>-->
+    <string name="banner_ad_unit_id_cliente">ca-app-pub-3940256099942544/1033173712</string> <!-- prueba  -->
+    <!--<string name="banner_ad_unit_id_cliente">ca-app-pub-4639820515028360/6627540493</string>-->
+    <string name="banner_ad_unit_id_ajuste">ca-app-pub-3940256099942544/1033173712</string> <!-- prueba  -->
+    <!--<string name="banner_ad_unit_id_ajuste">ca-app-pub-4639820515028360/6795061457</string>-->
+    <string name="banner_ad_unit_id_perfil">ca-app-pub-3940256099942544/1033173712</string> <!-- prueba  -->
+    <!--<string name="banner_ad_unit_id_perfil">ca-app-pub-4639820515028360/5767359748</string>-->
 </resources>

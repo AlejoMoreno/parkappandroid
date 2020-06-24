@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.app.ConfigActivity">
 
     <ScrollView
@@ -27,6 +28,16 @@
                     android:layout_height="100dp"
                     android:background="@drawable/bannerajustes"
                     android:orientation="vertical"/>
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adViewconfig"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="@string/banner_ad_unit_id">
+                </com.google.android.gms.ads.AdView>
 
                 <TextView
                     android:id="@+id/textView77"

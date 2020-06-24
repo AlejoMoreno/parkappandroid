@@ -3,10 +3,15 @@ package com.wakusoft.parkapp.ui.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +27,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.HeaderFooter;
+import com.lowagie.text.Image;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.ColumnText;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import com.wakusoft.parkapp.R;
 import com.wakusoft.parkapp.obj.Clientes;
 import com.wakusoft.parkapp.obj.Entradas;
@@ -30,11 +47,19 @@ import com.wakusoft.parkapp.ui.menu.CuadroClientes;
 import com.wakusoft.parkapp.ui.menu.CuadroDialogo;
 import com.wakusoft.parkapp.ui.menu.CuadroServicios;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import harmony.java.awt.Color;
 
 public class EntradasActivity extends AppCompatActivity implements CuadroServicios.FinalizoCuadroServicios, CuadroClientes.FinalizoCuadroClientes {
 
@@ -61,6 +86,10 @@ public class EntradasActivity extends AppCompatActivity implements CuadroServici
     String formattedDate;
 
     String curTime;
+
+    private final static String NOMBRE_DIRECTORIO = "MiPdf";
+    private final static String NOMBRE_DOCUMENTO = "prueba.pdf";
+    private final static String ETIQUETA_ERROR = "ERROR";
 
 
     @Override
@@ -120,12 +149,16 @@ public class EntradasActivity extends AppCompatActivity implements CuadroServici
 
                     entrada.save(entrada);
 
+
+
                     txPlaca.setText("");
                     btnClienteSelect.setText("Cliente");
                     btnServicioSelect.setText("Servicio");
                     txDescripcion.setText("");
                     txNota.setText("");
                     tHora.setText("");
+
+
 
                 }
             });
@@ -142,6 +175,108 @@ public class EntradasActivity extends AppCompatActivity implements CuadroServici
             Log.e("ERROR", exc.getMessage());
         }
     }
+
+    public void generarPdf() {
+
+        // Creamos el documento.
+        Document documento = new Document();
+
+        try {
+
+            File f = crearFichero(NOMBRE_DOCUMENTO);
+
+            // Creamos el flujo de datos de salida para el fichero donde
+            // guardaremos el pdf.
+            FileOutputStream ficheroPdf = new FileOutputStream(
+                    f.getAbsolutePath());
+
+            // Asociamos el flujo que acabamos de crear al documento.
+            PdfWriter writer = PdfWriter.getInstance(documento, ficheroPdf);
+
+            // Incluimos el pie de pagina y una cabecera
+            HeaderFooter cabecera = new HeaderFooter(new Phrase(
+                    "Esta es mi cabecera"), false);
+            HeaderFooter pie = new HeaderFooter(new Phrase(
+                    "Este es mi pie de pagina"), false);
+
+            documento.setHeader(cabecera);
+            documento.setFooter(pie);
+
+            // Abrimos el documento.
+            documento.open();
+
+            // Añadimos un titulo con la fuente por defecto.
+            documento.add(new Paragraph("Titulo 1"));
+
+            Font font = FontFactory.getFont(FontFactory.HELVETICA, 28,
+                    Font.BOLD, Color.RED);
+            documento.add(new Paragraph("Titulo personalizado", font));
+
+            // Insertamos una imagen que se encuentra en los recursos de la
+            // aplicacion.
+            Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(),
+                    R.mipmap.ic_launcher);
+            //ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            //bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            //Image imagen = Image.getInstance(stream.toByteArray());
+            //documento.add(imagen);
+
+            // Insertamos una tabla.
+            /*PdfPTable tabla = new PdfPTable(5);
+            for (int i = 0; i < 15; i++) {
+                tabla.addCell("Celda " + i);
+            }
+            documento.add(tabla);
+            */
+            // Agregar marca de agua
+            /*font = FontFactory.getFont(FontFactory.HELVETICA, 42, Font.BOLD,
+                    Color.GRAY);
+            ColumnText.showTextAligned(writer.getDirectContentUnder(),
+                    Element.ALIGN_CENTER, new Paragraph(
+                            "androfast.com", font), 297.5f, 421,
+                    writer.getPageNumber() % 2 == 1 ? 45 : -45);*/
+
+        } catch (DocumentException e) {
+
+            Log.e("ERROR", e.getMessage());
+
+        } catch (IOException e) {
+
+            Log.e("ERROR", e.getMessage());
+
+        } finally {
+            // Cerramos el documento.
+            documento.close();
+
+
+        }
+    }
+
+
+    public static File crearFichero(String nombreFichero) throws IOException {
+        File ruta = getRuta();
+        File fichero = null;
+        if (ruta != null)
+            fichero = new File(ruta, nombreFichero);
+        return fichero;
+    }
+
+    /**
+     * Obtenemos la ruta donde vamos a almacenar el fichero.
+     *
+     * @return
+     */
+    public static File getRuta() {
+
+        // El fichero sera almacenado en un directorio dentro del directorio
+        // Descargas
+        File ruta = new File(Environment.getExternalStorageDirectory() + "/Download");
+        if (!ruta.exists()) {
+            return null;
+        }
+        return ruta;
+    }
+
 
     @Override
     public void onBackPressed() {

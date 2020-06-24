@@ -19,6 +19,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +41,7 @@ import com.wakusoft.parkapp.R;
 import com.wakusoft.parkapp.obj.Usuarios;
 import com.wakusoft.parkapp.ui.menu.MenuActivity;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,10 +51,26 @@ public class ConfigActivity extends AppCompatActivity {
     List<String> dataTipoPagos = new ArrayList<String>();
     List<String> dataTipoVehiculo = new ArrayList<String>();
 
+    private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
+
+        AdView mAdView = (AdView) findViewById(R.id.adViewconfig);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
+
+        /*mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId( getString(R.string.banner_ad_unit_id_ajuste) );
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }*/
 
         getSupportActionBar().hide();
 
